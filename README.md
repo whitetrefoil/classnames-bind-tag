@@ -12,7 +12,7 @@ please use something like babel to transfer this library.
 Usage
 -----
 
-For example, we have a module CSS file "MyComp.css" exports `.my-comp` as `QWERTYASDFGZXCVB`.
+For example, we have a module CSS file "MyComp.css" exports `.my-comp` as `QWERTYASDFGZXCVB` and `.another` as `ZCXZCZXC`.
 
 ```tsx
 import bindCss from '@whitetrefoil/classnames-bind-tag'
@@ -21,13 +21,21 @@ import * as css from './MyComp.css'
 // "c" is a template tag
 // "cx" is same as the original `classnames/bind`
 const { c, cx } = bindCss(css)
+const classNameFromProps = 'another'
 
-console.log(c`my-comp another non-existing`)
-// => "QWERTYASDFGZXCVB another non-existing"
+console.log(c`my-comp ${classNameFromProps} non-existing`)
+// => "QWERTYASDFGZXCVB non-existing another"
+// .my-comp will be replaced with the mapped value in css module.
+// .non-existing will be preserved because it doesn't exist in css modules.
+// Results of inline expressions (e.g. `.another` here) will be preserved regardless of css modules.
 ```
 
 Changelog & Roadmap
 -------------------
+
+### v0.2.0
+
+* Add support for templates with inline expressions.
 
 ### v0.1.0
 
