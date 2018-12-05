@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "description": "A tiny wrapper of `classnames` which exports a \"template tag\" plus a bound function just like the original `classnames/bind`.",
   "main": "lib/common/main.js",
-  "module": "lib/esm/main.js",
+  "module": "lib/esm/main.mjs",
   "typings": "lib/types/main.d.ts",
   "scripts": {
     "prepublishOnly": "node scripts/prepublish-checklist.js && npm run build",
-    "build": "rimraf lib && tsc && tsc -p tsconfig.common.json",
+    "build": "rimraf lib && tsc && tsc -p tsconfig.common.json && renamer -f /\\.js$/i -r .mjs lib/esm/*",
     "publish": "echo \"Done publishing, don't forget to:\n  1. **dist-tag** your channel in npm.\n  2. bump version in package.json\nGood luck with the publish ;)\"",
     "test": "tslint . && jest --no-cache"
   },
@@ -19,6 +19,7 @@
   "license": "Unlicense",
   "files": [
     "lib/**/*.js",
+    "lib/**/*.mjs",
     "lib/types/**/*.d.ts",
     "README.md"
   ],
@@ -36,6 +37,7 @@
     "@types/jest": "^23.3.10",
     "@types/node": "^10.12.12",
     "jest": "^23.6.0",
+    "renamer": "^1.1.0",
     "rimraf": "^2.6.2",
     "ts-jest": "^23.10.5",
     "tslint": "^5.11.0",
