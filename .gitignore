@@ -300,3 +300,8 @@ typings/
 
 # Serverless directories
 .serverless
+
+
+### Project specific
+lib/
+~*/
