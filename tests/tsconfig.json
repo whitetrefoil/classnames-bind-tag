@@ -1,0 +1,17 @@
+{
+  "extends"        : "../tsconfig.json",
+  "compilerOptions": {
+    "outDir"        : "lib/common",
+    "declaration"   : false,
+    "declarationDir": null,
+    "target"        : "es5",
+    "module"        : "commonjs"
+  },
+  "include"        : [
+    "**/*.ts",
+    "**/*.js",
+    "../src/**/*.ts",
+    "../src/**/*.js",
+    "../declarations/*.d.ts"
+  ]
+}

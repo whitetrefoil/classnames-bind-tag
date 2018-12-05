@@ -305,3 +305,4 @@ typings/
 ### Project specific
 lib/
 ~*/
+test_results/

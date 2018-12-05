@@ -1,6 +1,6 @@
 {
   "name": "@whitetrefoil/classnames-bind-tag",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A tiny wrapper of `classnames` which exports a \"template tag\" plus a bound function just like the original `classnames/bind`.",
   "main": "lib/common/main.js",
   "module": "lib/esm/main.mjs",
@@ -9,7 +9,7 @@
     "prepublishOnly": "node scripts/prepublish-checklist.js && npm run build",
     "build": "rimraf lib && tsc && tsc -p tsconfig.common.json && renamer -f /\\.js$/i -r .mjs lib/esm/*",
     "publish": "echo \"Done publishing, don't forget to:\n  1. **dist-tag** your channel in npm.\n  2. bump version in package.json\nGood luck with the publish ;)\"",
-    "test": "tslint . && jest --no-cache"
+    "test": "tslint **/*.ts && jest --no-cache"
   },
   "repository": {
     "type": "git",
@@ -42,38 +42,5 @@
     "ts-jest": "^23.10.5",
     "tslint": "^5.11.0",
     "typescript": "^3.2.1"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.{ts,js}",
-      "!**/*.d.ts"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/~.*"
-    ],
-    "coverageDirectory": "test_results",
-    "coverageReporters": [
-      "clover",
-      "lcov",
-      "text-summary"
-    ],
-    "globals": {
-      "ts-jest": {
-        "skipBabel": false
-      }
-    },
-    "mapCoverage": true,
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "json"
-    ],
-    "moduleNameMapper": {},
-    "setupFiles": [],
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)$",
-    "transform": {
-      ".ts": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    }
   }
 }
