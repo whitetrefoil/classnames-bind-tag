@@ -11,7 +11,7 @@ test('c', () => {
 
   const { c }  = bindCss(importedCss)
   const result = c`classA ${importedCss.classB} ${'classC'} classD`
-  expect(result).toBe('AAAAA classD BBBBB classC')
+  expect(result).toBe('classA AAAAA classD BBBBB classC')
 })
 
 test('abnormal usage', () => {

@@ -13,15 +13,21 @@ export default function bindCss(styles: Record<string, string>): BoundCss {
       return ''
     }
 
-    let split: string[] = []
+    const split: string[] = []
     for (const str of strings.raw) {
-      const processed = str.trim().split(' ')
-      if (processed.length > 0) {
-        split = split.concat(processed)
+      const trimmed = str.trim()
+      if (trimmed.length === 0) {
+        continue
       }
+      trimmed.split(' ').forEach((s) => {
+        split.push(s)
+        if (styles[s] != null) {
+          split.push(styles[s])
+        }
+      })
     }
 
-    const strPart = cx(split)
+    const strPart    = split.join(' ').trim()
     const regexpPart = exps.join(' ').trim()
     const splitter   = strPart.length > 0 && regexpPart.length > 0 ? ' ' : ''
 
