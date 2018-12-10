@@ -24,14 +24,18 @@ const { c, cx } = bindCss(css)
 const classNameFromProps = 'another'
 
 console.log(c`my-comp ${classNameFromProps} non-existing`)
-// => "QWERTYASDFGZXCVB non-existing another"
-// .my-comp will be replaced with the mapped value in css module.
+// => "my-comp QWERTYASDFGZXCVB non-existing another"
+// .my-comp will be appended with the mapped value in css module.
 // .non-existing will be preserved because it doesn't exist in css modules.
 // Results of inline expressions (e.g. `.another` here) will be preserved regardless of css modules.
 ```
 
 Changelog & Roadmap
 -------------------
+
+### v0.3.0
+
+* Even a mapped value is found in css module, the original string will be preserved.
 
 ### v0.2.0
 
