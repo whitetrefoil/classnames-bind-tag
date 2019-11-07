@@ -19,19 +19,32 @@ import bindCss from '@whitetrefoil/classnames-bind-tag'
 import * as css from './MyComp.css'
 
 // "c" is a template tag
+// "cs" is same as "c" but will drop unresolved classes
 // "cx" is same as the original `classnames/bind`
-const { c, cx } = bindCss(css)
-const classNameFromProps = 'another'
+const { c, cs, cx } = bindCss(css);
+const classNameFromProps = 'another';
 
-console.log(c`my-comp ${classNameFromProps} non-existing`)
-// => "my-comp QWERTYASDFGZXCVB non-existing another"
-// .my-comp will be appended with the mapped value in css module.
-// .non-existing will be preserved because it doesn't exist in css modules.
-// Results of inline expressions (e.g. `.another` here) will be preserved regardless of css modules.
+console.log(c`my-comp ${classNameFromProps} non-existing "xxx"`)
+// => "QWERTYASDFGZXCVB ZCXZCZXC non-existing xxx"
+
+console.log(cs`my-comp ${classNameFromProps} non-existing 'xxx'`)
+// => "QWERTYASDFGZXCVB ZCXZCZXC xxx"
+
+// `my-comp` will be resolved to actual class name.
+// `${classNameFromProps}` will first resolve to `another` then actual class name.
+// `non-existing` will be preserved in `c()` but not in `cs()`.
+// texts in quotes (`"` or `'`) will be output as-is.
 ```
 
 Changelog & Roadmap
 -------------------
+
+### v0.4.0
+
+* Add a new `cs()` as a "stricter `c()`", which will drop non-existing classes.
+* Don't add variable name in the output.
+* Texts in quotes will be preserved.
+* Upgrade dependencies.
 
 ### v0.3.0
 

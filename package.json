@@ -1,6 +1,6 @@
 {
   "name": "@whitetrefoil/classnames-bind-tag",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A tiny wrapper of `classnames` which exports a \"template tag\" plus a bound function just like the original `classnames/bind`.",
   "main": "lib/common/main.js",
   "module": "lib/esm/main.mjs",
@@ -33,14 +33,14 @@
     "classnames": "^2.2.6"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.6",
-    "@types/jest": "^23.3.10",
-    "@types/node": "^10.12.12",
-    "jest": "^23.6.0",
-    "renamer": "^1.1.0",
-    "rimraf": "^2.6.2",
-    "ts-jest": "^23.10.5",
-    "tslint": "^5.11.0",
-    "typescript": "^3.2.2"
+    "@types/classnames": "^2.2.9",
+    "@types/jest": "^24.0.22",
+    "@types/node": "^12.12.6",
+    "jest": "^24.9.0",
+    "renamer": "^1.1.4",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
   }
 }

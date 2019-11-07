@@ -1,38 +1,56 @@
-import classNames, { ClassNamesExport } from 'classnames/bind'
+import classNames from 'classnames/bind';
 
 export interface BoundCss {
-  cx: ClassNamesExport
-  c(strings: TemplateStringsArray, ...exps: string[]): string
+  cx: typeof classNames.default;
+  c(strings: TemplateStringsArray, ...exps: string[]): string;
+  cs(strings: TemplateStringsArray, ...exps: string[]): string;
 }
 
 export default function bindCss(styles: Record<string, string>): BoundCss {
-  const cx = classNames.bind(styles)
+  const cx = classNames.bind(styles);
 
-  function c(strings: TemplateStringsArray, ...exps: string[]): string {
+  const _c = (strict: boolean, strings: TemplateStringsArray, ...exps: string[]): string => {
     if (strings == null || strings.raw == null) {
-      return ''
+      return '';
     }
 
-    const split: string[] = []
-    for (const str of strings.raw) {
-      const trimmed = str.trim()
-      if (trimmed.length === 0) {
-        continue
-      }
-      trimmed.split(' ').forEach((s) => {
-        split.push(s)
-        if (styles[s] != null) {
-          split.push(styles[s])
+    const split: Record<string, true> = {};
+
+    for (let i = 0; i < strings.raw.length; i++) {
+      if (i > 0) {
+        const exp = exps[i - 1]?.trim();
+        if (exp == null || exp === '') { continue; }
+        if (styles[exp] != null) {
+          split[styles[exp]] = true;
+        } else if (!strict) {
+          split[exp] = true;
         }
-      })
+      }
+
+      const trimmed = strings.raw[i];
+      if (trimmed.length === 0) { continue; }
+      trimmed.split(' ').forEach(s => {
+        if (s === '') { return; }
+        if (s.length > 2 && s[0] === s[s.length - 1]
+            && (s[0] === '"' || s[0] === '\'')
+        ) {
+          split[s.substr(1, s.length - 2)] = true;
+        } else if (styles[s] != null) {
+          split[styles[s]] = true;
+        } else if (!strict) {
+          split[s] = true;
+        }
+      });
     }
 
-    const strPart    = split.join(' ').trim()
-    const regexpPart = exps.join(' ').trim()
-    const splitter   = strPart.length > 0 && regexpPart.length > 0 ? ' ' : ''
+    return Object.keys(split).join(' ').trim();
+  };
 
-    return strPart + splitter + regexpPart
-  }
+  const c = (strings: TemplateStringsArray, ...exps: string[]) =>
+    _c(false, strings, ...exps);
 
-  return { cx, c }
+  const cs = (strings: TemplateStringsArray, ...exps: string[]) =>
+    _c(true, strings, ...exps);
+
+  return { cx, c, cs };
 }
