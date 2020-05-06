@@ -3,4 +3,9 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="9" />
   </component>
+  <component name="TypeScriptCompiler">
+    <option name="enableServiceForProjectsWithoutConfig" value="false" />
+    <option name="typeScriptCompilerParams" value="--sourceMap true" />
+    <option name="useConfig" value="true" />
+  </component>
 </project>

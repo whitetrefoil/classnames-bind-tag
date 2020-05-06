@@ -1,28 +1,35 @@
 {
   "compilerOptions": {
-    "declaration"           : true,
-    "declarationDir"        : "lib/types",
-    "esModuleInterop"       : true,
-    "experimentalDecorators": true,
-    "inlineSourceMap"       : false,
-    "inlineSources"         : true,
-    "lib"                   : ["esnext", "dom", "dom.iterable"],
-    "module"                : "esnext",
-    "moduleResolution"      : "node",
-    "outDir"                : "lib/esm",
-    "pretty"                : true,
-    "removeComments"        : false,
-    "skipLibCheck"          : true,
-    "sourceMap"             : true,
-    "strict"                : true,
-    "target"                : "es2018",
-    "typeRoots"             : [
-      "./node_modules/@types",
-      "./typings"
-    ]
+    "allowJs"                     : false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl"                     : ".",
+    "declaration"                 : true,
+    "declarationDir"              : "lib/types",
+    "emitDecoratorMetadata"       : true,
+    "esModuleInterop"             : true,
+    "experimentalDecorators"      : true,
+    "inlineSources"               : false,
+    "inlineSourceMap"             : false,
+    "lib"                         : ["esnext", "dom", "dom.iterable"],
+    "module"                      : "esnext",
+    "moduleResolution"            : "node",
+    "outDir"                      : "lib/esm",
+    "paths"                       : {
+      "~/*": ["./src/*"]
+    },
+    "skipLibCheck"                : true,
+    "sourceMap"                   : true,
+    "strict"                      : true,
+    "target"                      : "es2018"
   },
   "include"        : [
     "src/**/*.ts",
+    "src/**/*.js",
     "declarations/*.d.ts"
+  ],
+  "exclude"        : [
+    "**/node_modules",
+    "**/.*",
+    "**/~*"
   ]
 }

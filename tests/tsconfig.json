@@ -1,17 +1,15 @@
 {
   "extends"        : "../tsconfig.json",
   "compilerOptions": {
-    "outDir"        : "lib/common",
     "declaration"   : false,
     "declarationDir": null,
-    "target"        : "es5",
-    "module"        : "commonjs"
+    "module"        : "commonjs",
+    "outDir"        : "../.testing",
+    "target"        : "es5"
   },
-  "include"        : [
-    "**/*.ts",
-    "**/*.js",
+  "include": [
+    "../declarations/*.d.ts",
     "../src/**/*.ts",
-    "../src/**/*.js",
-    "../declarations/*.d.ts"
+    "**/*.ts"
   ]
 }

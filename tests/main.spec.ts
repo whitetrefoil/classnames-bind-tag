@@ -1,4 +1,4 @@
-import bindCss, { BoundCss } from '../src/main';
+import bindCss, { BoundCss } from '~/main';
 
 
 jest.resetModules();
