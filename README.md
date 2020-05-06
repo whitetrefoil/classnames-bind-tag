@@ -39,6 +39,10 @@ console.log(cs`my-comp ${classNameFromProps} non-existing 'xxx'`)
 Changelog & Roadmap
 -------------------
 
+### v0.5.0
+
+* Update a lot of stuff to latest.
+
 ### v0.4.0
 
 * Add a new `cs()` as a "stricter `c()`", which will drop non-existing classes.
